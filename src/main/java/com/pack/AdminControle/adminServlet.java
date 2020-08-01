@@ -38,11 +38,14 @@ public class adminServlet extends HttpServlet {
 		String url="/AdminInterface.jsp";
 		String adminMDP=request.getParameter("adminMDP");
 		String adminName=request.getParameter("adminName");
-		
+		String remarque="";
+		 List<Etudiant> l=TestSystem.getEtudiants();
+		try
+		{
 		admin ad1=GestionAdmin.getAdmin(adminName);
 		if (ad1!=null)
 		{
-			if (ad1.getAdminMDP()==adminMDP)
+			if (ad1.getAdminMDP().equals(adminMDP))
 			{	
 				
 				request.setAttribute("adminName", adminName);
@@ -55,26 +58,42 @@ public class adminServlet extends HttpServlet {
 			}
 			else
 			{
-				url="LogAdmin.jsp";
-				adminMDP="mot de passe incorrect";
+				url="/LogAdmin.jsp";
+				remarque="mot de passe incorrect";
 			}
 		}
 		else
 		{
-			url="LogAdmin.jsp";
-			adminMDP="le nom de l'admin n'existe pas";
+			url="/LogAdmin.jsp";
+			remarque="le nom de l'admin n'existe pas";
 		}
-		
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{	int j=0;
+			Etudiant[] etudiantTab=new Etudiant[l.size()];
+		  for (int i = 0; i < l.size(); i++)
+			{
+			  etudiantTab[j]=l.get(i);
+			  j++;
+			}
+			
+			request.setAttribute("remarque", remarque);
+			request.setAttribute("etudiantTab", etudiantTab);
+			request.setAttribute("l", l);
 		getServletContext()
 		.getRequestDispatcher(url)
 		.forward(request,response);
-	}
+	}}
 	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO AuSSSSto-generated method stub
 	doGet(request,response);
 }}

@@ -7,10 +7,18 @@ public class TestSystem {
 
 	 private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
 	            .createEntityManagerFactory("adminGUI");
+/*	
+	public static void main(String[] args)
+	{
+		List<Etudiant> l=getEtudiants();
+		for (int i = 0; i < l.size(); i++)
+		{
+		  System.out.println(l.get(i).getFName());
+		  
+		}
+	}
 	
-	
-
-	
+	*/
 	public static void addEtudiant(int id , String InscID , String FName , String LName, String CIN)
 	{
 		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
@@ -41,7 +49,7 @@ public class TestSystem {
 	{
 		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
 				
-		String Query="SELECT e FROM Etudiands WHERE e.id =: idEtudiant";
+		String Query="SELECT e FROM Etudiants e WHERE e.id =: idEtudiant";
 		TypedQuery<Etudiant> tq=em.createQuery(Query, Etudiant.class);
 				tq.setParameter("idEtudiant",id);
 		try
@@ -67,7 +75,7 @@ public class TestSystem {
 	public static List<Etudiant> getEtudiants()
 	{
 		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
-		String strQuery="SELECT e FROM Etudiants WHERE id IS NOT NULL "	;
+		String strQuery="SELECT e FROM Etudiant e WHERE e.id IS NOT NULL "	;
 		TypedQuery<Etudiant> tq=em.createQuery(strQuery, Etudiant.class);
 		List<Etudiant> L=null;
 		try
@@ -86,4 +94,38 @@ public class TestSystem {
 		}
 	
 	}
+	
+	  public static void updateEtudiant(int id, String fname,String lname, String cin, String insc) {
+	        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+	        EntityTransaction et = null;
+	        
+	    	Etudiant etudiant = null;
+	 
+	        try {
+	            // Get transaction and start
+	            et = em.getTransaction();
+	            et.begin();
+	 
+	            // Find customer and make changes
+	            etudiant = em.find(Etudiant.class, id);
+	            etudiant.setFName(fname);
+	            etudiant.setLName(lname);
+	            etudiant.setCIN(cin);
+	            etudiant.setInscID(insc);
+	            
+	 
+	            // Save the customer object
+	            em.persist(etudiant);
+	            et.commit();
+	        } catch (Exception ex) {
+	            // If there is an exception rollback changes
+	            if (et != null) {
+	                et.rollback();
+	            }
+	            ex.printStackTrace();
+	        } finally {
+	            // Close EntityManager
+	            em.close();
+	        }
+	    }
 }
