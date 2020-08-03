@@ -34,6 +34,10 @@ public class Etudiant implements Serializable {
 	@Column (name="CIN",nullable=false)
 	private String CIN;
 	
+
+	@Column (name="ClassII",nullable=false)
+	private String ClassII;
+	
 	public int getID()
 	{return id;}
 	public String getInscID()
@@ -45,6 +49,9 @@ public class Etudiant implements Serializable {
 	public String getCIN()
 	{return CIN;}
 	
+	public String getClassII()
+	{return ClassII;}
+	
 	public void setID(int id)
 	{this.id=id;}
 	public void setInscID(String InscID)
@@ -55,5 +62,7 @@ public class Etudiant implements Serializable {
 	{this.LName=LName;}
 	public void setCIN(String CIN)
 	{this.CIN=CIN;}
+	public void setClassII(String ClassII)
+	{this.ClassII=ClassII;}
 	
 }
