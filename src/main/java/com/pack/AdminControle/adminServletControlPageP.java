@@ -8,18 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.pack.adminGUI.*;
+
+import com.pack.adminGUI.Etudiant;
+import com.pack.adminGUI.TestSystem;
+
 /**
- * Servlet implementation class adminServletAdd
+ * Servlet implementation class adminServletControlPageP
  */
-@WebServlet("/adminServletAdd")
-public class adminServletAdd extends HttpServlet {
+@WebServlet("/adminServletControlPageP")
+public class adminServletControlPageP extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public adminServletAdd() {
+    public adminServletControlPageP() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,30 +40,25 @@ public class adminServletAdd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String Url="/AdminInterface.jsp";
-		String FName=request.getParameter("FName");
-		String LName=request.getParameter("LName");
-		String CIN=request.getParameter("CIN");
-		String InscID=request.getParameter("InscID");
-		String ClassII=request.getParameter("ClassII");
-		try {
-			
+		String url="/AdminInterface.jsp";
+		String numPage=request.getParameter("numPage");
+		int numPageint=Integer.parseInt(numPage);
 		
-		int i=TestSystem.getEtudiants().get(TestSystem.getEtudiants().size()-1).getID()+1;
-		TestSystem.addEtudiant(i, InscID, FName, LName, CIN ,ClassII);
-		
-		
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally {
 		List<Etudiant> l=TestSystem.getEtudiants();
 		request.setAttribute("l", l);
+		
+		if (numPageint==0)
+		{
+			request.setAttribute("numPageInt", numPage);
+		}
+		else
+		{
+			numPageint-=5;
+			request.setAttribute("numPageInt", numPage);
+		}
 		getServletContext()
-		.getRequestDispatcher(Url)
+		.getRequestDispatcher(url)
 		.forward(request,response);
-	}}
+	}
 
 }

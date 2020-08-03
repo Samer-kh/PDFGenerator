@@ -8,18 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.pack.adminGUI.*;
+
+import com.pack.adminGUI.Etudiant;
+import com.pack.adminGUI.TestSystem;
+
 /**
- * Servlet implementation class adminServletAdd
+ * Servlet implementation class adminServletUpdate
  */
-@WebServlet("/adminServletAdd")
-public class adminServletAdd extends HttpServlet {
+@WebServlet("/adminServletUpdate")
+public class adminServletUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public adminServletAdd() {
+    public adminServletUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,30 +40,34 @@ public class adminServletAdd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String Url="/AdminInterface.jsp";
-		String FName=request.getParameter("FName");
-		String LName=request.getParameter("LName");
-		String CIN=request.getParameter("CIN");
-		String InscID=request.getParameter("InscID");
+		String url="/AdminInterface.jsp";
+		String fnameU=request.getParameter("fnameU");
+		String lnameU=request.getParameter("lnameU");
+		String cinU=request.getParameter("cinU");
+		String inscU=request.getParameter("inscU");
 		String ClassII=request.getParameter("ClassII");
+		String idU=request.getParameter("idU");
+		int idUint =Integer.parseInt(idU);
 		try {
-			
 		
-		int i=TestSystem.getEtudiants().get(TestSystem.getEtudiants().size()-1).getID()+1;
-		TestSystem.addEtudiant(i, InscID, FName, LName, CIN ,ClassII);
-		
-		
+		TestSystem.updateEtudiant(idUint,fnameU, lnameU, cinU, inscU , ClassII);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 		finally {
-		List<Etudiant> l=TestSystem.getEtudiants();
-		request.setAttribute("l", l);
-		getServletContext()
-		.getRequestDispatcher(Url)
-		.forward(request,response);
-	}}
+			 String adminName=request.getParameter("adminName1");
+			 request.setAttribute("adminName", adminName);
+			 List<Etudiant> l=TestSystem.getEtudiants();
+			 request.setAttribute("l", l);
+			
+			
+			getServletContext()
+			.getRequestDispatcher(url)
+			.forward(request,response);
+		}
+		
+	}
 
 }

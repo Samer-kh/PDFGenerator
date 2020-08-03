@@ -8,18 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.pack.adminGUI.*;
+
+import com.pack.adminGUI.Etudiant;
+import com.pack.adminGUI.TestSystem;
+
 /**
- * Servlet implementation class adminServletAdd
+ * Servlet implementation class adminServletSearchFName
  */
-@WebServlet("/adminServletAdd")
-public class adminServletAdd extends HttpServlet {
+@WebServlet("/adminServletSearchFName")
+public class adminServletSearchFName extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public adminServletAdd() {
+    public adminServletSearchFName() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,30 +40,33 @@ public class adminServletAdd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String Url="/AdminInterface.jsp";
-		String FName=request.getParameter("FName");
-		String LName=request.getParameter("LName");
-		String CIN=request.getParameter("CIN");
-		String InscID=request.getParameter("InscID");
-		String ClassII=request.getParameter("ClassII");
+		String url="/AdminInterface.jsp";
+		String FName=request.getParameter("fnameS");
 		try {
+			List<Etudiant> l=TestSystem.getEtudiant(FName,0);
+			if (!FName.equals("")&&(l!=null))
+			{
 			
-		
-		int i=TestSystem.getEtudiants().get(TestSystem.getEtudiants().size()-1).getID()+1;
-		TestSystem.addEtudiant(i, InscID, FName, LName, CIN ,ClassII);
-		
-		
+			
+			request.setAttribute("l", l);
+			}
+			else
+			{
+				 l=TestSystem.getEtudiants();
+				request.setAttribute("l", l);
+			}
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
-		finally {
-		List<Etudiant> l=TestSystem.getEtudiants();
-		request.setAttribute("l", l);
-		getServletContext()
-		.getRequestDispatcher(Url)
-		.forward(request,response);
-	}}
+		finally
+		{
+			
+			getServletContext()
+			.getRequestDispatcher(url)
+			.forward(request,response);
+		}
+	}
 
 }

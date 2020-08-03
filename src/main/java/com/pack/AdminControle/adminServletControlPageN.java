@@ -8,18 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.pack.adminGUI.*;
+
+import com.pack.adminGUI.Etudiant;
+import com.pack.adminGUI.TestSystem;
+
 /**
- * Servlet implementation class adminServletAdd
+ * Servlet implementation class adminServletControlPageN
  */
-@WebServlet("/adminServletAdd")
-public class adminServletAdd extends HttpServlet {
+@WebServlet("/adminServletControlPageN")
+public class adminServletControlPageN extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public adminServletAdd() {
+    public adminServletControlPageN() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,30 +40,26 @@ public class adminServletAdd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String Url="/AdminInterface.jsp";
-		String FName=request.getParameter("FName");
-		String LName=request.getParameter("LName");
-		String CIN=request.getParameter("CIN");
-		String InscID=request.getParameter("InscID");
-		String ClassII=request.getParameter("ClassII");
-		try {
-			
+		String url="/AdminInterface.jsp";
+
 		
-		int i=TestSystem.getEtudiants().get(TestSystem.getEtudiants().size()-1).getID()+1;
-		TestSystem.addEtudiant(i, InscID, FName, LName, CIN ,ClassII);
-		
-		
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally {
+		String numPage1=request.getParameter("numPage");
+		int numPage=Integer.parseInt(numPage1);
 		List<Etudiant> l=TestSystem.getEtudiants();
 		request.setAttribute("l", l);
+		if (l.size()-5*(numPage+1) < 0)
+		{
+		
+			request.setAttribute("numPageint", numPage);
+		}
+		else
+		{
+			numPage+=1;
+			request.setAttribute("numPageint", numPage);
+		}
 		getServletContext()
-		.getRequestDispatcher(Url)
+		.getRequestDispatcher(url)
 		.forward(request,response);
-	}}
+	}
 
 }

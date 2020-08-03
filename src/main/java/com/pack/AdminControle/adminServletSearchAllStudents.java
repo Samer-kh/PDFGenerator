@@ -8,18 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.pack.adminGUI.*;
+
+import com.pack.adminGUI.Etudiant;
+import com.pack.adminGUI.TestSystem;
+
 /**
- * Servlet implementation class adminServletAdd
+ * Servlet implementation class adminServletSearchAllStudents
  */
-@WebServlet("/adminServletAdd")
-public class adminServletAdd extends HttpServlet {
+@WebServlet("/adminServletSearchAllStudents")
+public class adminServletSearchAllStudents extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public adminServletAdd() {
+    public adminServletSearchAllStudents() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,30 +40,15 @@ public class adminServletAdd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String Url="/AdminInterface.jsp";
-		String FName=request.getParameter("FName");
-		String LName=request.getParameter("LName");
-		String CIN=request.getParameter("CIN");
-		String InscID=request.getParameter("InscID");
-		String ClassII=request.getParameter("ClassII");
-		try {
-			
-		
-		int i=TestSystem.getEtudiants().get(TestSystem.getEtudiants().size()-1).getID()+1;
-		TestSystem.addEtudiant(i, InscID, FName, LName, CIN ,ClassII);
-		
-		
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally {
+		String url="/AdminInterface.jsp";
 		List<Etudiant> l=TestSystem.getEtudiants();
-		request.setAttribute("l", l);
+			request.setAttribute("l", l);
+		
+	
+		
 		getServletContext()
-		.getRequestDispatcher(Url)
+		.getRequestDispatcher(url)
 		.forward(request,response);
-	}}
+	}
 
 }

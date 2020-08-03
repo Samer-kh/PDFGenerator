@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+<title>Admin DataTable</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -21,7 +21,7 @@ body {
 	font-size: 13px;
 }
 .table-responsive {
-    margin: 30px 0;
+    margin: 20px 0;
 }
 .table-wrapper {
 	background: #fff;
@@ -238,6 +238,45 @@ table.table .avatar {
 .modal form label {
 	font-weight: normal;
 }	
+body{
+background-color:#BEB0B0;
+border-radius: 15px;
+}
+.table-title{
+background-color:#1CD1D4;
+}
+.table 
+{
+background-color:#D9EEEE;
+border-radius: 35px;
+}
+
+input, textarea, select, option {
+ background-color:#FFF3F3;
+ }
+input, textarea, select {
+ padding:3px;
+ border:1px solid #F5C5C5;
+ border-radius:5px;
+ width:150px;
+ box-shadow:1px 1px 2px #C0C0C0 inset;
+ }
+submit
+ {color:#BEB0B0;
+ }
+ .table-responsive
+ {border-radius: 35px;
+ }
+ i
+ {border-radius: 35px;
+ }
+ .table-wrapper
+ {width:1200px;
+ }
+ .container-fluid
+ {border-radius: 35px;
+ }
+
 </style>
 <script>
 $(document).ready(function(){
@@ -267,17 +306,20 @@ $(document).ready(function(){
 </head>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <body>
-<div class="container-xl">
+<center>
+<div class="container-fluid">
 	<div class="table-responsive">
 		<div class="table-wrapper">
 			<div class="table-title">
 				<div class="row">
-					<div class="col-sm-6">
-						<h2>Manage Students &emsp;&emsp;The Admin is : ${adminName}</h2>
+					<div class="col-sm-8">
+						<h2>Manage Students &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;The Admin is : ${adminName}&emsp;</h2>
+						<c:set var = "adminName" scope = "session" value = "${adminName}"/>
+						<input type="hidden" name="adminName1" value="${adminName}" >
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New student</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+						<a href="#deleteEmployeeModalAll" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 					</div>
 				</div>
 			</div>
@@ -294,11 +336,33 @@ $(document).ready(function(){
 						<th>Last Name</th>
 						<th>CIN</th>
 						<th>NumInscription</th>
+						<th>Class</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var = "i" begin = "0" end = "${l.size()-1}">
+				<tr>
+					
+					
+						<td>
+							
+						</td>
+						<center><td><form action="adminServletSearchFName" method="post" > <input type="search" name="fnameS" Placeholder="Search..." > </form></td>
+						<td><form action="adminServletSearchLName" method="post" > <input type="search" name="lnameS" Placeholder="Search..." > </form></td>
+						<td><form action="adminServletSearch" method="post" > <input type="search" name="CINS" Placeholder="Search..." > </form></td>
+						<td><form action="adminServletSearchInscID" method="post" > <input type="search" name="inscS" Placeholder="Search..." > </form></td>
+						<td><form action="adminServletSearchClassII" method="post" > <input type="search"   name="ClassII" Placeholder="Search..." > </form></td>
+						
+						<td><form action="adminServletSearchAllStudents" method="post" > <input type="Submit" value="Show All Students"  name="inscS" Placeholder="Search..." > </form></td>
+						
+						</center>
+					</tr>
+				 <c:if test = "${l.size() >0}">
+				 <c:set var = "numPage" scope = "session" value = "${numPage}"/>
+        <c:choose>
+				 <c:when test = "${numPage + 5 <= l.size()}">
+    
+				<c:forEach var = "i" begin = "${numPage}" end = "${numPage + 4}">
 					<tr>
 					
 					
@@ -312,26 +376,53 @@ $(document).ready(function(){
 						<td><c:out value = "${l.get(i).getLName()}"/></td>
 						<td><c:out value = "${l.get(i).getCIN()}"/></td>
 						<td><c:out value = "${l.get(i).getInscID()}"/></td>
+						<td><c:out value = "${l.get(i).getClassII()}"/></td>
 						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							<a href="#editEmployeeModal${i}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="#deleteEmployeeModal${i}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
 					</c:forEach>
 					<tr>
-						 
+					</c:when>
+					<c:otherwise>
+					
+					<c:forEach var = "i" begin = "${numPage}" end = "${l.size()-1}">
+					<tr>
+					
+					
+						<td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox1" name="options[]" value="1">
+								<label for="checkbox1"></label>
+							</span>
+						</td>
+						<td><c:out value = "${l.get(i).getFName()}"/></td>
+						<td><c:out value = "${l.get(i).getLName()}"/></td>
+						<td><c:out value = "${l.get(i).getCIN()}"/></td>
+						<td><c:out value = "${l.get(i).getInscID()}"/></td>
+						<td><c:out value = "${l.get(i).getClassII()}"/></td>
+						<td>
+							<a href="#editEmployeeModal${i}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="#deleteEmployeeModal${i}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+						</td>
+					</tr>
+					</c:forEach>
+					<tr>
+					</c:otherwise>
+					</c:choose>
+				  </c:if>		 
 				</tbody>
 			</table>
 			<div class="clearfix">
-				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+				<div class="hint-text">Showing <b><c:out value="5" /></b> out of <b><c:out value="${l.size()}" /></b> entries</div>
+				
+				
 				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item active"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
+					<li class="page-item disabled"><form action="adminServletControlPageP" method="post" ><input type="hidden" name="numPage" value="${numPage}" ><input type="submit" value="Previous" ></form></li>
+					<li class="page-item"><a href="#" class="page-link"><c:out value="${numPage}" /></a></li>
+					
+					<li class="page-item"><form action="adminServletControlPageN" method="post" ><input type="hidden" name="numPage" value="${numPage}" ><c:set var = "numPage" scope = "session" value="${numPage}" /><input type="submit" value="Next" ></form></li>
 				</ul>
 			</div>
 		</div>
@@ -362,7 +453,11 @@ $(document).ready(function(){
 					<div class="form-group">
 						<label>Inscription number :</label>
 						<input type="text" class="form-control" name="InscID" required>
-					</div>					
+					</div>		
+					<div class="form-group">
+						<label>Class :</label>
+						<input type="text" class="form-control" name="ClassII" required>
+					</div>				
 				</div>
 				<div class="modal-footer">
 					
@@ -373,10 +468,11 @@ $(document).ready(function(){
 	</div>
 </div>
 <!-- Edit Modal HTML -->
-<div id="editEmployeeModal" class="modal fade">
+<c:forEach var="j" begin="0" end="${l.size()-1}">
+<div id="editEmployeeModal${j}" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action="adminServletEdit" method="post">
+			<form action="adminServletUpdate" method="post">
 				<div class="modal-header">						
 					<h4 class="modal-title">Edit Student</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -384,20 +480,26 @@ $(document).ready(function(){
 				<div class="modal-body">					
 					<div class="form-group">
 						<label>First Name :</label>
-						<input type="text" class="form-control" value="${l.get(i).getFName()}" required>
+						<input type="text" class="form-control" value="${l.get(j).getFName()}" name="fnameU" required>
+						<input type="hidden" name="idU" value="${l.get(j).getID()}" >
 					</div>
 					<div class="form-group">
 						<label>Last Name :</label>
-						<input type="text" class="form-control" value="${l.get(i).getLName()}" required>
+						<input type="text" class="form-control" value="${l.get(j).getLName()}" name="lnameU" required>
 					</div>
 					<div class="form-group">
 						<label>CIN :</label>
-						<input type="text" class="form-control" value="${l.get(i).getCIN()}" required>
+						<input type="text" class="form-control" value="${l.get(j).getCIN()}" name="cinU" required>
 					</div>
 					<div class="form-group">
 						<label>Inscription Number :</label>
-						<input type="text" class="form-control" value="${l.get(i).getInscID()}" required>
-					</div>					
+						<input type="text" class="form-control" value="${l.get(j).getInscID()}" name="inscU" required>
+					</div>
+					<div class="form-group">
+						<label>Class :</label>
+						<input type="text" class="form-control" value="${l.get(j).getClassII()}" name="ClassII" required>
+					</div>
+										
 				</div>
 				<div class="modal-footer">
 				
@@ -407,17 +509,21 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
+</c:forEach>
+<c:forEach var="k" begin="0" end="${l.size()-1}">
+
 <!-- Delete Modal HTML -->
-<div id="deleteEmployeeModal" class="modal fade">
+<div id="deleteEmployeeModal${k}" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form action="adminServletRemove" method="post">
 				<div class="modal-header">						
-					<h4 class="modal-title">Delete Employee</h4>
+					<h4 class="modal-title">Delete Student</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<input type="hidden" name="idR" value="${l.get(k).getID()}" >
 				</div>
 				<div class="modal-body">					
-					<p>Are you sure you want to delete these Records?</p>
+					<p>Are you sure you want to delete this student ?</p>
 					<p class="text-warning"><small>This action cannot be undone.</small></p>
 				</div>
 				<div class="modal-footer">
@@ -428,5 +534,28 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
+</c:forEach>
+<div id="deleteEmployeeModalAll" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form action="adminServletRemoveAll" method="post">
+				<div class="modal-header">						
+					<h4 class="modal-title">Delete Student</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<input type="hidden" name="idR" value="${l.get(k).getID()}" >
+				</div>
+				<div class="modal-body">					
+					<p>Are you sure you want to delete the selected student(s) ?</p>
+					<p class="text-warning"><small>This action cannot be undone.</small></p>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-danger" value="Delete">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</center>
 </body>
 </html>

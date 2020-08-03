@@ -80,7 +80,8 @@ public class adminServlet extends HttpServlet {
 			  etudiantTab[j]=l.get(i);
 			  j++;
 			}
-			
+			int numPage=0;
+			request.setAttribute("numPage", numPage);
 			request.setAttribute("remarque", remarque);
 			request.setAttribute("etudiantTab", etudiantTab);
 			request.setAttribute("l", l);

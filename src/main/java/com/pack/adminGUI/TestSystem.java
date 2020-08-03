@@ -19,7 +19,7 @@ public class TestSystem {
 	}
 	
 	*/
-	public static void addEtudiant(int id , String InscID , String FName , String LName, String CIN)
+	public static void addEtudiant(int id , String InscID , String FName , String LName, String CIN , String ClassII)
 	{
 		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction et= null;
@@ -32,7 +32,8 @@ public class TestSystem {
 			etud.setFName(FName);
 			etud.setInscID(InscID);
 			etud.setLName(LName);
-			etud.setID(id);
+			etud.setClassII(ClassII);
+			
 			em.persist(etud);
 			et.commit();
 		}
@@ -72,6 +73,129 @@ public class TestSystem {
 		}
 	}
 	
+	public static List<Etudiant> getEtudiant(String CIN)
+	{
+
+		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
+		String strQuery="SELECT e FROM Etudiant e WHERE e.CIN=:cin "	;
+		TypedQuery<Etudiant> tq=em.createQuery(strQuery, Etudiant.class);
+		tq.setParameter("cin",CIN);
+		List<Etudiant> L=null;
+		try
+		{
+			L=tq.getResultList();
+			return L;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			em.close();
+		}
+	}
+	
+	
+	public static List<Etudiant> getEtudiant(String FName,int a)
+	{
+
+		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
+		String strQuery="SELECT e FROM Etudiant e WHERE e.FName=:FName "	;
+		TypedQuery<Etudiant> tq=em.createQuery(strQuery, Etudiant.class);
+		tq.setParameter("FName",FName);
+		List<Etudiant> L=null;
+		try
+		{
+			L=tq.getResultList();
+			return L;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			em.close();
+		}
+	}
+	
+	public static List<Etudiant> getEtudiant(String LName,int a,int b)
+	{
+
+		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
+		String strQuery="SELECT e FROM Etudiant e WHERE e.LName=:LName "	;
+		TypedQuery<Etudiant> tq=em.createQuery(strQuery, Etudiant.class);
+		tq.setParameter("LName",LName);
+		List<Etudiant> L=null;
+		try
+		{
+			L=tq.getResultList();
+			return L;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			em.close();
+		}
+	}
+
+	public static List<Etudiant> getEtudiant(String InscID,int a,int b,int c)
+	{
+
+		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
+		String strQuery="SELECT e FROM Etudiant e WHERE e.InscID=:InscID "	;
+		TypedQuery<Etudiant> tq=em.createQuery(strQuery, Etudiant.class);
+		tq.setParameter("InscID",InscID);
+		List<Etudiant> L=null;
+		try
+		{
+			L=tq.getResultList();
+			return L;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			em.close();
+		}
+	}
+	
+	public static List<Etudiant> getEtudiant(String ClassII,int a,int b,int c,int d)
+	{
+
+		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
+		String strQuery="SELECT e FROM Etudiant e WHERE e.ClassII=:ClassII "	;
+		TypedQuery<Etudiant> tq=em.createQuery(strQuery, Etudiant.class);
+		tq.setParameter("ClassII",ClassII);
+		List<Etudiant> L=null;
+		try
+		{
+			L=tq.getResultList();
+			return L;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			em.close();
+		}
+	}
+	
+	
+	
 	public static List<Etudiant> getEtudiants()
 	{
 		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
@@ -95,7 +219,9 @@ public class TestSystem {
 	
 	}
 	
-	  public static void updateEtudiant(int id, String fname,String lname, String cin, String insc) {
+	
+	
+	  public static void updateEtudiant(int id, String fname,String lname, String cin, String insc,String ClassII) {
 	        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
 	        EntityTransaction et = null;
 	        
@@ -112,10 +238,34 @@ public class TestSystem {
 	            etudiant.setLName(lname);
 	            etudiant.setCIN(cin);
 	            etudiant.setInscID(insc);
+	            etudiant.setClassII(ClassII);
+	            
 	            
 	 
 	            // Save the customer object
 	            em.persist(etudiant);
+	            et.commit();
+	        } catch (Exception ex) {
+	            // If there is an exception rollback changes
+	            if (et != null) {
+	                et.rollback();
+	            }
+	            ex.printStackTrace();
+	        } finally {
+	            // Close EntityManager
+	            em.close();
+	        }
+	    }
+	  public static void deleteEtudiant(int id) {
+	    	EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+	        EntityTransaction et = null;
+	        Etudiant etud = null;
+	 
+	        try {
+	            et = em.getTransaction();
+	            et.begin();
+	            etud = em.find(Etudiant.class, id);
+	            em.remove(etud);
 	            et.commit();
 	        } catch (Exception ex) {
 	            // If there is an exception rollback changes
