@@ -50,7 +50,7 @@ public class TestSystem {
 	{
 		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
 				
-		String Query="SELECT e FROM Etudiants e WHERE e.id =: idEtudiant";
+		String Query="SELECT e FROM Etudiant e WHERE e.id =: idEtudiant";
 		TypedQuery<Etudiant> tq=em.createQuery(Query, Etudiant.class);
 				tq.setParameter("idEtudiant",id);
 		try
@@ -72,6 +72,34 @@ public class TestSystem {
 			em.close();
 		}
 	}
+	
+	public static Etudiant getEtudiantCIN(String CIN)
+	{
+		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
+				
+		String Query="SELECT e FROM Etudiant e WHERE e.CIN =: CINEtudiant";
+		TypedQuery<Etudiant> tq=em.createQuery(Query, Etudiant.class);
+				tq.setParameter("CINEtudiant",CIN);
+		try
+		{
+			Etudiant et =new Etudiant();
+			et=tq.getSingleResult();
+			System.out.println("le resultat est trouvé");
+			
+			return et;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Erreur");
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			em.close();
+		}
+	}
+	
 	
 	public static List<Etudiant> getEtudiant(String CIN)
 	{
