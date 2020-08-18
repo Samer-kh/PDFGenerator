@@ -1,6 +1,8 @@
 package com.pack.admins;
 import javax.persistence.*;
 
+import antlr.collections.List;
+
 
 
 
@@ -134,4 +136,47 @@ private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.c
 		}
 		return false;
 	}
+	public static List<admin> getAdmins()
+	{
+
+		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
+		String strQuery="SELECT e FROM Admin e WHERE e.AdminName IS NOT NULL "	;
+		TypedQuery<Admin> tq=em.createQuery(strQuery, Admin.class);
+		List<Admin> L=null;
+		try
+		{
+			L=tq.getResultList();
+			return L;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			em.close();
+		}
+}
+	public static List<admin> getAdmins(String AdminName)
+	{
+
+		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
+		String strQuery="SELECT e FROM Admin e WHERE e.AdminName =: AdminName "	;
+		TypedQuery<Admin> tq=em.createQuery(strQuery, Admin.class);
+		List<Admin> L=null;
+		try
+		{
+			L=tq.getResultList();
+			return L;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			em.close();
+		}
 }
