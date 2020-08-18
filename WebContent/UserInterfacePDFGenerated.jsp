@@ -2,11 +2,10 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -22,9 +21,15 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css"/>
 
+<!------ Include the above in your HEAD tag ---------->
 
-
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
 <style>
+body{
+background-color: #d6d6c2;
+}
 #titre-nav{
 
 color:#9999ff;
@@ -400,18 +405,12 @@ section .section-title {
     padding-bottom: 0px;
     margin-bottom: 10px;
 }
-}
-
-
 
 </style>
-
-
-	
-
 </head>
 <body>
-<c:set var = "etud" scope = "session" value = "${etud}"/>
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
   <a class="navbar-brand" href="#"><span id="titre-nav" ><strong>PDF-Generator</strong></span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -420,112 +419,42 @@ section .section-title {
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-      
-      
-      
-        <a class="nav-link" href="/adminGUI/UserInterface.jsp"><span id="titre-nav1" >Home</span> <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="/adminGUI/UserInterface.jsp""><span id="titre-nav1" >Home</span> <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/adminGUI/UserInterfaceEdit.jsp"><span id="titre-nav1" >Edit Info</span></a>
+        <a class="nav-link" href="/adminGUI/UserInterfaceEdit.jsp""><span id="titre-nav1" >Edit Info</span></a>
       </li>
      
-      <li class="nav-item">
+      <li class="nav-item ">
         <a class="nav-link " href="/adminGUI/UserInterfaceAboutUs.jsp" ><span id="titre-nav1" >About US</span></a>
       </li>
     </ul>
     
   </div>
 </nav>
-<div id="gauche">
-<div class="line1" >
-			  <div class="row">
-             
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="text-center feature-block" style="border-radius: 35px; height:90%;">
-                <span class="fb-icon color-info">
-                  <i class="fa fa-user" aria-hidden="true"></i></i>
-                </span>
-                <h4 class="color-info"><strong>First Name :</strong> ${etud.getFName()}</h4>
-                <p class="color-info"><strong></strong></p>
-               
-              </div>
-            </div>
-             <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="text-center feature-block" style="border-radius: 35px;height:90%;">
-                <span class="fb-icon color-info">
-                 <i class="fa fa-user" aria-hidden="true"></i></i>
-                </span>
-                <h4 class="color-info"><strong> Name :</strong> ${etud.getLName()}</h4>
-                <p class="color-info"><strong></strong></p>
-               
-              </div>
-            </div>
-            
-            <div class="col-lg-3 col-md-6 col-sm-6">
-             <div class="text-center feature-block" style="border-radius: 35px;height:90%;">
-                <span class="fb-icon color-warning">
-                  <i class="fa fa-id-card" aria-hidden="true"></i>
-                </span>
-                <h4 class="color-warning"><strong>CIN :</strong> ${etud.getCIN()}</h4>
-                <p class="color-warning"><strong></strong></p>
+
+<section>
+            <div class="row">
                 
-              </div>
-            </div>
-            </div> 
-            </div>
-            
-            <div class="line2" >
-            <div class="row" >
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="text-center feature-block" style="border-radius: 35px;height:90%;">
-                <span class="fb-icon color-success">
-                  <i class="fa fa-envelope" aria-hidden="true"></i>
-                </span>
-                <h4 class="color-success"><strong>Inscription :</strong> ${etud.getInscID()}</h4>
-                <p class="color-success"><strong></strong></p>
-               
-              </div>
-            </div>
-            
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="text-center feature-block" style="border-radius: 35px;height:90%;">
-                <span class="fb-icon color-danger">
-                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                </span>
-                <h4 class="color-danger"><strong>Class :</strong> ${etud.getClassII()}</h4>
-                <p class="color-danger"></strong></p>
-                
-              </div>
-            </div>
-            </div>
-            </div>
-           
-           
-</div>
-<c:set var = "etud" scope = "session" value = "${etud}"/>
-<div id="droite" style="margin-top:2%"> 
-	
-		<div class="page-container">
-            
-           <center> <div class="part2">
-			<h3><span id="tt" >Choose the document :</span></h3>
-                 <form action="PDFServletFirstDoc" method="post"><button type="submit" value="Add" name="submit" onSubmit="alert()"><input type="hidden" Name="FName" value=" ${etud.getFName()}"><input type="hidden" Name="LName" value=" ${etud.getLName()}"><input type="hidden" Name="Class" value=" ${etud.getClassII()}" ><input type="hidden" Name="CIN" value=" ${etud.getCIN()}" ><input type="hidden" Name="InscID" value=" ${etud.getInscID()}">Attestation de Présence</button></form>
-                  <form action="UserServletFirstDoc" method="post"><button type="submit" value="Add" name="submit"><input type="hidden" Name="FName" value=" ${etud.getFName()}"><input type="hidden" Name="LName" value=" ${etud.getLName()}"><input type="hidden" Name="Class" value=" ${etud.getClassII()}" ><input type="hidden" Name="CIN" value=" ${etud.getCIN()}" ><input type="hidden" Name="InscID" value=" ${etud.getInscID()}">Certificat d'Inscription</button></form>
-                   <form action="UserServletFirstDoc" method="post"><button type="submit" value="Add" name="submit"><input type="hidden" ><input type="hidden" ><input type="hidden" ><input type="hidden" ><input type="hidden" >Attestation de succés</button></form>
-                   <form action="UserServletFirstDoc" method="post"> <button type="submit" value="Add" name="submit"><input type="hidden" ><input type="hidden" ><input type="hidden" ><input type="hidden" ><input type="hidden" >Certificat d'absence</button></form>
-               
-            </div></center>
-        </div>
-
-
-
-
-
-
-</div>
-
-<section id="footer" >
+                    <div class="aboutus" style="margin-left:35%;margin-top:5%;">
+                  	<center>
+                  	<div class="col-lg-9 col-md-- col-sm-9" style="border-radius: 35px;background-color:grey">
+                        <h2 class="aboutus-title" style="color:#99b3ff"><strong>Génération d'attestation de présence</strong></h2>
+                        <br>
+                        <br>
+                        <p class="aboutus-text" style="color:white;font-style:italic;font-size:16px;">Votre Document a été générer avec succés </p>
+                        <br>
+                        <br>
+                        <p class="aboutus-text"><a href="/adminGUI/UserInterface.jsp"><button type="button" class="btn btn-primary btn-lg">Retour</button></a> </p>
+                        
+                        </div>
+                      </center>  
+                    </div>
+                  
+                </div>
+                </section>
+        <section id="footer" >
 		<div class="container" >
 
 			<div class="row" style="">
@@ -548,7 +477,6 @@ section .section-title {
 				<hr>
 				</div>
 				</section>
-				
-		
+
 </body>
 </html>
