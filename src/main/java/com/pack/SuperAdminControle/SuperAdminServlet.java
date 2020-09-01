@@ -1,9 +1,11 @@
-package com.pack.SuperAdminControl;
+package com.pack.SuperAdminControle;
 
 
 import java.io.IOException;
-import java.util.List;
+
 import java.lang.String;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.persistence.*;
 import com.pack.admins.*;
 import com.pack.adminGUI.*;
-import com.pack.superadmin.GestionSuperAdmin;
-import com.pack.superadmin.SuperAdmin;
+import com.pack.SuperAdmin.GestionSuperAdmin;
+import com.pack.SuperAdmin.SuperAdmin;
 
 /**
  * Servlet implementation class adminServlet
@@ -42,7 +44,7 @@ public class SuperAdminServlet extends HttpServlet {
 		String SuperAdminMDP=request.getParameter("SuperAdminMDP");
 		String SuperAdminName=request.getParameter("SuperAdminName");
 		String remarque="";
-		 List<Admin> l=GestionAdmin.getAdmins();
+		 List<admin> l=(List<admin>) GestionAdmin.getAdmins();
 		try
 		{
 		SuperAdmin ad1= GestionSuperAdmin.getSuperAdmin(SuperAdminName);
