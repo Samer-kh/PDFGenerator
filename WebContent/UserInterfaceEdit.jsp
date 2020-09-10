@@ -5,7 +5,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>changer Infos </title>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -320,6 +320,81 @@ button:active {
 	margin-top:10%;
 }
 
+/* Footer */
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+section {
+    padding: 60px 0;
+    margin-top:-10%;
+}
+
+section .section-title {
+    text-align: center;
+    color: #007b5e;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+}
+#footer h5{
+	padding-left: 10px;
+    border-left: 3px solid #eeeeee;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+    color:#ffffff;
+}
+#footer a {
+    color: #ffffff;
+    text-decoration: none !important;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+#footer ul.social li{
+	padding: 3px 0;
+}
+#footer ul.social li a i {
+    margin-right: 5px;
+	font-size:25px;
+	-webkit-transition: .5s all ease;
+	-moz-transition: .5s all ease;
+	transition: .5s all ease;
+}
+#footer ul.social li:hover a i {
+	font-size:30px;
+	margin-top:-10px;
+}
+#footer ul.social li a,
+#footer ul.quick-links li a{
+	color:#ffffff;
+}
+#footer ul.social li a:hover{
+	color:#eeeeee;
+}
+#footer ul.quick-links li{
+	padding: 3px 0;
+	-webkit-transition: .5s all ease;
+	-moz-transition: .5s all ease;
+	transition: .5s all ease;
+}
+#footer ul.quick-links li:hover{
+	padding: 3px 0;
+	margin-left:5px;
+	font-weight:700;
+}
+#footer ul.quick-links li a i{
+	margin-right: 5px;
+}
+#footer ul.quick-links li:hover a i {
+    font-weight: 700;
+}
+
+@media (max-width:767px){
+	#footer h5 {
+    padding-left: 0;
+    border-left: transparent;
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+}
+}
 
 </style>
 <script>
@@ -356,7 +431,7 @@ button:active {
 		<div class="page-container">
             
             <form action="userServletEdit" method="post">
-			<h1>Sign Up</h1>
+			<h1>Vos Infos :</h1>
                 <input type="text" name="FName" class="Name" placeholder="First Name" value="${etud.getFName()}">
                 <input type="text" name="LName" class="Tele" placeholder="Last Name" value="${etud.getLName()}">
 				<input type="text" name="CIN" class="Email" placeholder="CIN" value="${etud.getCIN()}">
@@ -368,8 +443,32 @@ button:active {
         </div>
         
         </div>
+<br>
+<br>
+<br>
+<section id="footer" >
+		<div class="container" >
 
-
+			<div class="row" style="">
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+					<ul class="list-unstyled list-inline social text-center">
+						<li class="list-inline-item"><a href="https://www.facebook.com/ENSI.tunisie/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+						<li class="list-inline-item"><a href="https://twitter.com/ensitn?lang=fr" target="_blank"><i class="fa fa-twitter"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.linkedin.com/school/ensitn/?originalSubdomain=fr" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+						<li class="list-inline-item"><a href="http://www.ensi.rnu.tn" target="_blank"><i class="fa fa-globe"></i></a></li>
+				
+					</ul>
+				</div>
+				<hr>
+			</div>	
+			
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+					
+					<p class="h6">© Tous les droits sont réservés à l'ecole national des sciences d'informatique , Manouba , Tunisie</p>
+				</div>
+				<hr>
+				</div>
+				</section>
 
 
 

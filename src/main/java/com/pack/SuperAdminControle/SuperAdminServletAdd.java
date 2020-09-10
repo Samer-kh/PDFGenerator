@@ -1,5 +1,5 @@
 package com.pack.SuperAdminControle;
-import com.pack.Admins.*;
+import com.pack.admins.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
+
 import com.pack.adminGUI.*;
 /**
  * Servlet implementation class adminServletAdd

@@ -183,7 +183,7 @@ color:white;
         <input type="text" id="email" name="adminName">
         <label for="password">Password</label>
         <input type="password" id="password" name="adminMDP">
-        <input type="submit" id="submit" value="Submit">
+        <input type="submit" id="submit" value="Submit" style="color:white;">
         <c:set var = "numPage" scope = "session" value = "0"/>
         <br>
         <center><span id="remarque"><p>${remarque}</p></span></center>

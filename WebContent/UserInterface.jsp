@@ -5,7 +5,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Interface de l'utilisateur </title>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -48,7 +48,7 @@ html, body {
 
 #gauche {
 	width: 70%;
-	height: 87%;
+	height: 63%;
 	float: left;
 
 }
@@ -58,7 +58,7 @@ background-color: #d6d6c2;
 }
 #droite {
 	width: 30%;
-	height: 87%;
+	height: 63%;
 	float: left;
 	
 }
@@ -446,7 +446,7 @@ section .section-title {
                 <span class="fb-icon color-info">
                   <i class="fa fa-user" aria-hidden="true"></i></i>
                 </span>
-                <h4 class="color-info"><strong>First Name :</strong> ${etud.getFName()}</h4>
+                <h4 class="color-info"><strong>Prénom :</strong> ${etud.getFName()}</h4>
                 <p class="color-info"><strong></strong></p>
                
               </div>
@@ -456,7 +456,7 @@ section .section-title {
                 <span class="fb-icon color-info">
                  <i class="fa fa-user" aria-hidden="true"></i></i>
                 </span>
-                <h4 class="color-info"><strong> Name :</strong> ${etud.getLName()}</h4>
+                <h4 class="color-info"><strong> Nom :</strong> ${etud.getLName()}</h4>
                 <p class="color-info"><strong></strong></p>
                
               </div>
@@ -509,7 +509,7 @@ section .section-title {
 		<div class="page-container">
             
            <center> <div class="part2">
-			<h3><span id="tt" >Choose the document :</span></h3>
+			<h3><span id="tt" style="font-style:italic;color:#66a3ff;" ><b>Choisissez le document :</b></span></h3>
                  <form action="PDFServletFirstDoc" method="post"><button type="submit" value="Add" name="submit" onSubmit="alert()"><input type="hidden" Name="FName" value=" ${etud.getFName()}"><input type="hidden" Name="LName" value=" ${etud.getLName()}"><input type="hidden" Name="Class" value=" ${etud.getClassII()}" ><input type="hidden" Name="CIN" value=" ${etud.getCIN()}" ><input type="hidden" Name="InscID" value=" ${etud.getInscID()}">Attestation de Présence</button></form>
                   <form action="PDFServletSecondDoc" method="post"><button type="submit" value="Add" name="submit" onSubmit="alert()"><input type="hidden" Name="FName" value=" ${etud.getFName()}"><input type="hidden" Name="LName" value=" ${etud.getLName()}"><input type="hidden" Name="Class" value=" ${etud.getClassII()}" ><input type="hidden" Name="CIN" value=" ${etud.getCIN()}" ><input type="hidden" Name="InscID" value=" ${etud.getInscID()}">Certificat d'Inscription</button></form>
                    <form action="PDFServletThirdDoc" method="post"><button type="submit" value="Add" name="submit" onSubmit="alert()"><input type="hidden" Name="FName" value=" ${etud.getFName()}"><input type="hidden" Name="LName" value=" ${etud.getLName()}"><input type="hidden" Name="Class" value=" ${etud.getClassII()}" ><input type="hidden" Name="CIN" value=" ${etud.getCIN()}" ><input type="hidden" Name="InscID" value=" ${etud.getInscID()}">Attestation de succés</button></form>
@@ -543,7 +543,7 @@ section .section-title {
 			
 				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
 					
-					<p class="h6">© All right Reversed to the National School of Computer Science , Manouba , Tunisia</p>
+					<p class="h6">© Tous les droits sont réservés à l'ecole national des sciences d'informatique , Manouba , Tunisie</p>
 				</div>
 				<hr>
 				</div>

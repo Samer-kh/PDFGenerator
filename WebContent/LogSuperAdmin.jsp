@@ -118,7 +118,7 @@ input {
   background: transparent;
   border: 0;
   color: #f2f2f2;
-  font-size: 20px;
+  font-size: 20px;11
   height: 30px;
   line-height: 30px;
   outline: none !important;
@@ -180,10 +180,10 @@ color:white;
       <form action="SuperAdminServlet" method="post">
       <div class="form" >
         <label for="email">Username</label>
-        <input type="text" id="email" name="adminName">
+        <input type="text" id="email" name="SuperAdminName">
         <label for="password">Password</label>
-        <input type="password" id="password" name="adminMDP">
-        <input type="submit" id="submit" value="Submit">
+        <input type="password" id="password" name="SuperAdminMDP">
+        <input type="submit" id="submit" value="Submit" style="color:white;">
         <c:set var = "numPage" scope = "session" value = "0"/>
         <br>
         <center><span id="remarque"><p>${remarque}</p></span></center>

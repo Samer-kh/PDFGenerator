@@ -182,10 +182,10 @@ color:white;
       </svg>
       <form action="userServlet" method="post">
       <div class="form" >
-        <label for="email">National Identity Cart</label>
+        <label for="email">National Identity Card</label>
         <input type="text" id="email" name="userCIN">
        
-        <input type="submit" id="submit" value="Submit">
+        <input type="submit" id="submit" value="Submit" style="color:white;">
         
         <br>
         <center><span id="remarque"><p>${remarque}</p></span></center>

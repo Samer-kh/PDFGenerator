@@ -79,7 +79,7 @@ public class SuperAdminServlet extends HttpServlet {
 		}
 		finally
 		{	int j=0;
-			Admin[] adminTab=new Admin[l.size()];
+			admin[] adminTab=new admin[l.size()];
 		  for (int i = 0; i < l.size(); i++)
 			{
 			  adminTab[j]=l.get(i);

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.pack.admins.admin;
 import com.pack.admins.GestionAdmin;
-import com.pack.admins.String;
 
 /**
  * Servlet implementation class adminServletRemove
@@ -44,9 +43,11 @@ public class SuperAdminServletRemove extends HttpServlet {
 		String url="/SuperAdminInterface.jsp" ;
 		String AdminName=request.getParameter("AdminName");
 		String AdminMDP=request.getParameter("AdminMDP");
-		int idRint=Integer.parseInt(idR);
+		String ID=request.getParameter("AdminID");
+		int IDint=Integer.parseInt(ID);
+		
 		try {
-			GestionAdmin.removeAdmin(AdminName,AdminMDP);
+			GestionAdmin.removeAdmin(IDint ,AdminName,AdminMDP);
 		}
 		catch(Exception e)
 		{
@@ -54,7 +55,7 @@ public class SuperAdminServletRemove extends HttpServlet {
 		}
 		finally {
 		
-			 List<Admin> l=GestionAdmin.getAdmins();
+			 List<admin> l=GestionAdmin.getAdmins();
 			 request.setAttribute("l", l);	
 			 
 			 getServletContext()

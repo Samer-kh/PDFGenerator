@@ -10,7 +10,7 @@
 
   <name>adminGUI</name>
   <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -43,6 +43,7 @@
       <scope>provided</scope>
       
     </dependency>
+   
     
     <dependency>
 	  <groupId>javax.servlet</groupId>
@@ -79,6 +80,9 @@
     <artifactId>itextpdf</artifactId>
     <version>5.5.10</version>
 </dependency>
+
+
+
 <dependency>
     <groupId>org.apache.pdfbox</groupId>
     <artifactId>pdfbox</artifactId>

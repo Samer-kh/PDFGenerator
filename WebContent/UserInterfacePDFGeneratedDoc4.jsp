@@ -25,7 +25,7 @@
 
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Générer anec succés</title>
 <style>
 body{
 background-color: #d6d6c2;

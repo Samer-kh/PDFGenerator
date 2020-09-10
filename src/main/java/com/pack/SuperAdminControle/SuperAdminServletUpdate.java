@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.pack.admins.admin;
 import com.pack.admins.GestionAdmin;
-import com.pack.admins.String;
+
 /**
  * Servlet implementation class adminServletUpdate
  */
@@ -43,11 +43,12 @@ public class SuperAdminServletUpdate extends HttpServlet {
 		String url="/SuperAdminInterface.jsp";
 		String AdminName=request.getParameter("AdminName");
 		String AdminMDP=request.getParameter("AdminMDP");
-		String AdminMDP=request.getParameter("AdminNewMDP");
-	
+		
+		String  ID=request.getParameter("AdminID");
+		int IDint = Integer.parseInt(ID);
 		try {
 		
-		GestionAdmin.updateAdmin(AdminName,AdminMDP,AdminNewMDP);
+		GestionAdmin.updateAdmin(IDint ,AdminName,AdminMDP);
 		}
 		catch(Exception e)
 		{

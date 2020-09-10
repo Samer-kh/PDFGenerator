@@ -1,9 +1,9 @@
-package com.pack.superadmin;
+package com.pack.SuperAdmin;
 
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
-@Table(name="superAdmin")
+@Table(name="superadmin")
 public class SuperAdmin implements Serializable{
 
 	

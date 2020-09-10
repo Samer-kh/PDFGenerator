@@ -611,7 +611,7 @@ section .section-title {
 			
 				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
 					
-					<p class="h6">© All right Reversed to the National School of Computer Science , Manouba , Tunisia</p>
+					<p class="h6">© Tous les droits sont réservés à l'ecole national des sciences d'informatique , Manouba , Tunisie</p>
 				</div>
 				<hr>
 				</div>

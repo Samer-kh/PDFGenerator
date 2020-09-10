@@ -1,7 +1,9 @@
 package com.pack.admins;
+import java.util.List;
+
 import javax.persistence.*;
 
-import antlr.collections.List;
+
 
 
 
@@ -74,24 +76,25 @@ private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.c
 	}
 	
 	
-	public static boolean updateAdmin(String AdminName,String AdminMDP, String AdminNewMDP)
+	public static void updateAdmin(int ID ,String AdminName,String AdminMDP)
 	{
 		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction et=null;
+		admin admin=new admin();
 		try
 		{
 		et=em.getTransaction();
 		et.begin();
-		admin admin=new admin();
-		admin=em.find(admin.class,AdminName);
 		
-		if (admin.getAdminMDP()==AdminMDP)
-		{
-			admin.setAdminMDP(AdminNewMDP);
+		admin=em.find(admin.class,ID);
+		
+		
+			admin.setAdminMDP(AdminMDP);
+			admin.setAdminName(AdminName);
 			em.persist(admin);
 			et.commit();
-			return true;
-		}
+			
+		
 
 		
 		
@@ -104,10 +107,10 @@ private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.c
 		{
 			em.close();
 		}
-		return false;
+	
 	}
 	
-	public static boolean removeAdmin(String AdminName,String AdminMDP)
+	public static void removeAdmin(int ID ,String AdminName,String AdminMDP)
 	{
 		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction et=null;
@@ -116,16 +119,15 @@ private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.c
 			et=em.getTransaction();
 			et.begin();
 			admin admin1=new admin();
-			admin1=em.find(admin.class,AdminName);
+			admin1=em.find(admin.class,ID);
 			
-			if (admin1.getAdminMDP()==AdminMDP)
-			{
+			
 				em.remove(admin1);
 				
 				et.commit();
-				return true;
+			
 				
-			}}
+			}
 		catch(Exception e)
 		{
 			e.printStackTrace();
@@ -134,15 +136,15 @@ private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.c
 		{
 			em.close();
 		}
-		return false;
+		
 	}
 	public static List<admin> getAdmins()
 	{
 
 		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
-		String strQuery="SELECT e FROM Admin e WHERE e.AdminName IS NOT NULL "	;
-		TypedQuery<Admin> tq=em.createQuery(strQuery, Admin.class);
-		List<Admin> L=null;
+		String strQuery="SELECT e FROM admin e WHERE e.AdminName IS NOT NULL "	;
+		TypedQuery<admin> tq=em.createQuery(strQuery, admin.class);
+		List<admin> L=null;
 		try
 		{
 			L=tq.getResultList();
@@ -162,9 +164,9 @@ private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.c
 	{
 
 		EntityManager em=ENTITY_MANAGER_FACTORY.createEntityManager();
-		String strQuery="SELECT e FROM Admin e WHERE e.AdminName =: AdminName "	;
-		TypedQuery<Admin> tq=em.createQuery(strQuery, Admin.class);
-		List<Admin> L=null;
+		String strQuery="SELECT e FROM admin e WHERE e.AdminName =: AdminName "	;
+		TypedQuery<admin> tq=em.createQuery(strQuery, admin.class);
+		List<admin> L=null;
 		try
 		{
 			L=tq.getResultList();
@@ -179,4 +181,4 @@ private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.c
 		{
 			em.close();
 		}
-}
+}}

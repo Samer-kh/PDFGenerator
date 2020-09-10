@@ -313,13 +313,12 @@ $(document).ready(function(){
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-8">
-						<h2>Manage admins &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;The Admin is : ${SuperAdminName}&emsp;</h2>
-						<c:set var = "adminName" scope = "session" value = "${SuperAdminName}"/>
-						<input type="hidden" name="adminName1" value="${SuperAdminName}" >
+						<h2>Manage admins &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;The SuperAdmin is : ${SuperAdminName}&emsp;</h2>
+						<c:set var = "SuperAdminName" scope = "session" value = "${SuperAdminName}"/>
+						<input type="hidden" name="SuperAdminName1" value="${SuperAdminName}" >
 					</div>
 					<div class="col-sm-4">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New admin</span></a>
-						<a href="#deleteEmployeeModalAll" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New admin</span></a>					
 					</div>
 				</div>
 			</div>
@@ -333,23 +332,12 @@ $(document).ready(function(){
 							</span>
 						</th>
 						<th>Admin Name</th>
-						<th>Last Name</th>
+						<th>Admin password</th>
+						<th>actions </th>
 						</tr>
 				</thead>
 				<tbody>
-				<tr>
-					
-					
-						<td>
-							
-						</td>
-						<center><td><form action="SuperAdminServletSearchAdminName" method="post" > <input type="search" name="AdminName" Placeholder="Search..." > </form></td>
-						
-						
-						<td><form action="SuperAdminServletSearchAllAdmins" method="post" > <input type="Submit" value="Show All Admins"  name="inscS" Placeholder="Search..." > </form></td>
-						
-						</center>
-					</tr>
+			
 				 <c:if test = "${l.size() >0}">
 				 <c:set var = "numPage" scope = "session" value = "${numPage}"/>
         <c:choose>
@@ -396,6 +384,7 @@ $(document).ready(function(){
 							<a href="#deleteEmployeeModal${i}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
+					<tr><td></td><td></td><td></td></tr>
 					</c:forEach>
 					<tr>
 					</c:otherwise>
@@ -404,15 +393,7 @@ $(document).ready(function(){
 				</tbody>
 			</table>
 			<div class="clearfix">
-				<div class="hint-text">Showing <b><c:out value="5" /></b> out of <b><c:out value="${l.size()}" /></b> entries</div>
 				
-				
-				<ul class="pagination">
-					<li class="page-item disabled"><form action="SuperAdminServletControlPageP" method="post" ><input type="hidden" name="numPage" value="${numPage}" ><input type="submit" value="Previous" ></form></li>
-					<li class="page-item"><a href="#" class="page-link"><c:out value="${numPage}" /></a></li>
-					
-					<li class="page-item"><form action="superAdminServletControlPageN" method="post" ><input type="hidden" name="numPage" value="${numPage}" ><c:set var = "numPage" scope = "session" value="${numPage}" /><input type="submit" value="Next" ></form></li>
-				</ul>
 			</div>
 		</div>
 	</div>        
@@ -449,7 +430,7 @@ $(document).ready(function(){
 <div id="editEmployeeModal${j}" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action="superAdminServletUpdate" method="post">
+			<form action="SuperAdminServletUpdate" method="post">
 				<div class="modal-header">						
 					<h4 class="modal-title">Edit Admin</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -457,7 +438,8 @@ $(document).ready(function(){
 				<div class="modal-body">					
 					<div class="form-group">
 						<label>Admin Name :</label>
-						<input type="text" class="form-control" value="${l.get(j).getAdminName()()}" name="AdminName" required>
+						<input type="text" class="form-control" value="${l.get(j).getAdminName()}" name="AdminName" required>
+						<input type="hidden" value="${l.get(j).getAdminID()}" name="AdminID">
 					</div>
 					<div class="form-group">
 						<label>Admin Password :</label>
@@ -484,8 +466,9 @@ $(document).ready(function(){
 				<div class="modal-header">						
 					<h4 class="modal-title">Delete Admin</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<input type="hidden" name="AdminName" value="${l.get(k).getAdminName()()}" >
-						<input type="hidden" name="AdminMDP" value="${l.get(k).getAdminMDP()()}" >
+					<input type="hidden" name="AdminName" value="${l.get(k).getAdminName()}" >
+						<input type="hidden" name="AdminMDP" value="${l.get(k).getAdminMDP()}" >
+						<input type="hidden" value="${l.get(k).getAdminID()}" name="AdminID">
 				</div>
 				<div class="modal-body">					
 					<p>Are you sure you want to delete this admin ?</p>

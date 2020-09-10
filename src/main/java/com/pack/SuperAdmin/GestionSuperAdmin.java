@@ -1,6 +1,6 @@
-package com.pack.superadmin;
+package com.pack.SuperAdmin;
 
-import com.pack.admins.Admin;
+import com.pack.admins.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.lang.String;
 
 
 public class GestionSuperAdmin {
-private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("SuperAdminGUI");
+private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("adminGUI");
 	
 	/*public static void main (String[] args)
 	{

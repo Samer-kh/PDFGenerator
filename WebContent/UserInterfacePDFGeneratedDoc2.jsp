@@ -25,7 +25,7 @@
 
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Générer anec succés</title>
 <style>
 body{
 background-color: #d6d6c2;
@@ -440,7 +440,7 @@ section .section-title {
                     <div class="aboutus" style="margin-left:35%;margin-top:5%;">
                   	<center>
                   	<div class="col-lg-9 col-md-- col-sm-9" style="border-radius: 35px;background-color:grey">
-                        <h2 class="aboutus-title" style="color:#99b3ff"><strong>Génération Certificat D'inscription</strong></h2>
+                        <h2 class="aboutus-title" style="color:#99b3ff"><strong>Génération Du Certificat D'inscription</strong></h2>
                         <br>
                         <br>
                         <p class="aboutus-text" style="color:white;font-style:italic;font-size:16px;">Votre Document a été générer avec succés </p>
