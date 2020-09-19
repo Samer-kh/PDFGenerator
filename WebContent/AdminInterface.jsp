@@ -305,6 +305,7 @@ $(document).ready(function(){
 </script>
 </head>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <body>
 <center>
 <div class="container-fluid">
@@ -358,11 +359,12 @@ $(document).ready(function(){
 						</center>
 					</tr>
 				 <c:if test = "${l.size() >0}">
-				 <c:set var = "numPage" scope = "session" value = "${numPage}"/>
+				 <c:set var = "numPage1" scope = "session" value = "${numPage}"/>
+				  <fmt:parseNumber var = "numPage" type = "number" value = "${numPage1}" />
         <c:choose>
-				 <c:when test = "${numPage + 5 <= l.size()}">
+				 <c:when test = "${(numPage + 1) * 5 <= l.size()}">
     
-				<c:forEach var = "i" begin = "${numPage}" end = "${numPage + 4}">
+				<c:forEach var = "i" begin = "${numPage*5}" end = "${(numPage*5) + 4}">
 					<tr>
 					
 					
@@ -387,7 +389,7 @@ $(document).ready(function(){
 					</c:when>
 					<c:otherwise>
 					
-					<c:forEach var = "i" begin = "${numPage}" end = "${l.size()-1}">
+					<c:forEach var = "i" begin = "${(numPage)*5}" end = "${l.size()-1}">
 					<tr>
 					
 					
@@ -419,7 +421,7 @@ $(document).ready(function(){
 				
 				
 				<ul class="pagination">
-					<li class="page-item disabled"><form action="adminServletControlPageP" method="post" ><input type="hidden" name="numPage" value="${numPage}" ><input type="submit" value="Previous" ></form></li>
+					<li class="page-item"><form action="adminServletControlPageP" method="post" ><input type="hidden" name="numPage" value="${numPage}" ><c:set var = "numPage" scope = "session" value="${numPage}" /><input type="submit" value="Previous" ></form></li>
 					<li class="page-item"><a href="#" class="page-link"><c:out value="${numPage}" /></a></li>
 					
 					<li class="page-item"><form action="adminServletControlPageN" method="post" ><input type="hidden" name="numPage" value="${numPage}" ><c:set var = "numPage" scope = "session" value="${numPage}" /><input type="submit" value="Next" ></form></li>

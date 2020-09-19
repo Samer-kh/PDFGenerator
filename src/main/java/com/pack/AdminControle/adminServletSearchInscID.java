@@ -41,6 +41,8 @@ public class adminServletSearchInscID extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String url="/AdminInterface.jsp";
+		int numPage=0;
+		request.setAttribute("numPage", numPage);
 		String InscID=request.getParameter("inscS");
 		try {
 			List<Etudiant> l=TestSystem.getEtudiant(InscID,0,0,0);

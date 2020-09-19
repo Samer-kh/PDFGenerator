@@ -42,6 +42,8 @@ public class adminServletSearchClassII extends HttpServlet implements Servlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String url="/AdminInterface.jsp";
+		int numPage=0;
+		request.setAttribute("numPage", numPage);
 		String ClassII=request.getParameter("ClassII");
 		try {
 			List<Etudiant> l=TestSystem.getEtudiant(ClassII,0,0,0,0);

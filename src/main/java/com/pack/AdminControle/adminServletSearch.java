@@ -41,6 +41,9 @@ public class adminServletSearch extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String url="/AdminInterface.jsp";
+	
+		int numPage=0;
+		request.setAttribute("numPage", numPage);
 		String CINS=request.getParameter("CINS");
 		List<Etudiant> l1=TestSystem.getEtudiant(CINS);
 		try {

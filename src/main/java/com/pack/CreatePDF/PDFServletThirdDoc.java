@@ -146,6 +146,12 @@ public class PDFServletThirdDoc extends HttpServlet {
 	         e.printStackTrace();
 	      }
 		finally {
+			 String FName=request.getParameter("FName");
+	         String LName=request.getParameter("LName");
+	       
+			
+				String nameFile="C:\\Users\\Samer's PC\\eclipse-workspace-ee\\adminGUI\\GeneratedPDFs\\" + FName + "-" + LName + "-Attestation-success.pdf";
+	            request.setAttribute("nameFile", nameFile);
 			String url="/UserInterfacePDFGeneratedDoc3.jsp";
 			
 			getServletContext()

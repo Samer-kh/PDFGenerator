@@ -57,7 +57,7 @@ public class PDFServletForthDoc extends HttpServlet {
 	    	  String FName=request.getParameter("FName");
 		         String LName=request.getParameter("LName");
 		         
-		       String DocNom="C:\\Users\\Samer's PC\\eclipse-workspace-ee\\adminGUI\\GeneratedPDFs\\" + FName + "-" + LName + "-Attestation-success.pdf";
+		       String DocNom="C:\\Users\\Samer's PC\\eclipse-workspace-ee\\adminGUI\\GeneratedPDFs\\" + FName + "-" + LName + "-certificat-absence.pdf";
 	         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(new File(DocNom)));
 	         document.open();
 	         
@@ -91,7 +91,7 @@ public class PDFServletForthDoc extends HttpServlet {
 	         document.add( Chunk.NEWLINE );
 	         
 	         
-	         Paragraph title=new Paragraph("\n\nAttestation de Succés", FontFactory.getFont(FontFactory.TIMES_ROMAN, 20, Font.ITALIC));
+	         Paragraph title=new Paragraph("\n\nretrait d'inscription", FontFactory.getFont(FontFactory.TIMES_ROMAN, 20, Font.ITALIC));
 	         title.setAlignment(Element.ALIGN_CENTER);
 	         title.setPaddingTop(10);
 	         document.add(title);
@@ -125,7 +125,7 @@ public class PDFServletForthDoc extends HttpServlet {
 	         document.add(new Chunk(InscF));
 	         document.add(new Chunk(ClassF));
 	         
-	         String Parag = " La direction de l'ENSI affirme que l'etudiant(e) " + FName + " " + LName + " de carte d'identité " + CIN + " ayant le numéro d'inscription " + InscID +" , a reussit ces études  à l'ENSI Pour l'année universitaire 2019/2020 " ;
+	         String Parag = " La direction de l'ENSI affirme que l'etudiant(e) " + FName + " " + LName + " de carte d'identité " + CIN + " ayant le numéro d'inscription " + InscID +" , a retirer son inscription  à l'ENSI Pour l'année universitaire 2019/2020 " ;
 	         Paragraph ph=new Paragraph (Parag);
 	         document.add(ph);
 	         
@@ -146,6 +146,12 @@ public class PDFServletForthDoc extends HttpServlet {
 	         e.printStackTrace();
 	      }
 		finally {
+			 String FName=request.getParameter("FName");
+	         String LName=request.getParameter("LName");
+	       
+			
+				String nameFile="C:\\Users\\Samer's PC\\eclipse-workspace-ee\\adminGUI\\GeneratedPDFs\\" + FName + "-" + LName + "-certificat-absence.pdf";
+	            request.setAttribute("nameFile", nameFile);
 			String url="/UserInterfacePDFGeneratedDoc4.jsp";
 			
 			getServletContext()

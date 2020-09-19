@@ -41,6 +41,8 @@ public class adminServletSearchFName extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String url="/AdminInterface.jsp";
+		int numPage=0;
+		request.setAttribute("numPage", numPage);
 		String FName=request.getParameter("fnameS");
 		try {
 			List<Etudiant> l=TestSystem.getEtudiant(FName,0);

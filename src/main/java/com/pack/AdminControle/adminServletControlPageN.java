@@ -50,12 +50,12 @@ public class adminServletControlPageN extends HttpServlet {
 		if (l.size()-5*(numPage+1) < 0)
 		{
 		
-			request.setAttribute("numPageint", numPage);
+			request.setAttribute("numPage", numPage);
 		}
 		else
 		{
 			numPage+=1;
-			request.setAttribute("numPageint", numPage);
+			request.setAttribute("numPage", numPage);
 		}
 		getServletContext()
 		.getRequestDispatcher(url)

@@ -41,20 +41,20 @@ public class adminServletControlPageP extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String url="/AdminInterface.jsp";
-		String numPage=request.getParameter("numPage");
-		int numPageint=Integer.parseInt(numPage);
+		String numPage1=request.getParameter("numPage");
+		int numPage=Integer.parseInt(numPage1);
 		
 		List<Etudiant> l=TestSystem.getEtudiants();
 		request.setAttribute("l", l);
 		
-		if (numPageint==0)
+		if (numPage!=0)
 		{
-			request.setAttribute("numPageInt", numPage);
+			numPage--;
+			request.setAttribute("numPage", numPage);
 		}
 		else
 		{
-			numPageint-=5;
-			request.setAttribute("numPageInt", numPage);
+			request.setAttribute("numPage", numPage);
 		}
 		getServletContext()
 		.getRequestDispatcher(url)

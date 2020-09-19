@@ -435,17 +435,24 @@ section .section-title {
 </nav>
 
 <section>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var = "nameFile" scope = "session" value = "${nameFile}"/>
             <div class="row">
                 
                     <div class="aboutus" style="margin-left:35%;margin-top:5%;">
                   	<center>
                   	<div class="col-lg-9 col-md-- col-sm-9" style="border-radius: 35px;background-color:grey">
-                        <h2 class="aboutus-title" style="color:#99b3ff"><strong>Génération d'attestation de présence</strong></h2>
+                        <h2 class="aboutus-title" style="color:#99b3ff"><strong>Génération d'attestation de retrait d'inscription</strong></h2>
                         <br>
                         <br>
                         <p class="aboutus-text" style="color:white;font-style:italic;font-size:16px;">Votre Document a été générer avec succés </p>
                         <br>
                         <br>
+                        <form action="DownloadServletPDF4" method="post">
+                       <input type="hidden" name="nameFile" value="${nameFile}" >
+                        <p class="aboutus-text"><a href="/adminGUI/DownloadServletPDF4"><button type="submit" class="btn btn-primary btn-lg">Telecharger le Document</button></a> </p>
+                        </form>
                         <p class="aboutus-text"><a href="/adminGUI/UserInterface.jsp"><button type="button" class="btn btn-primary btn-lg">Retour</button></a> </p>
                         
                         </div>
